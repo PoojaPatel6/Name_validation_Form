@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title>AngularJS Form</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2 class="text-center mt-4">Name Validation</h2>
+        <div ng-controller="myCtrl" class="form-container">
+
+            <form name="myForm" ng-submit="submitForm()" novalidate>
+
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" class="form-control" ng-model="formData.name" required>
+                    <div ng-show="myForm.name.$touched && myForm.name.$invalid" class="text-danger">Name is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" id="age" name="age" class="form-control" ng-model="formData.age" required>
+                    <div ng-show="myForm.age.$touched && myForm.age.$invalid" class="text-danger">Age is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="class">Class:</label>
+                    <input type="text" id="class" name="class" class="form-control" ng-model="formData.class" required>
+                    <div ng-show="myForm.class.$touched && myForm.class.$invalid" class="text-danger">Class is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" class="form-control" ng-model="formData.email" required>
+                    <div ng-show="myForm.email.$touched && myForm.email.$invalid" class="text-danger">Valid email is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact:</label>
+                    <input type="text" id="contact" name="contact" class="form-control" ng-model="formData.contact" required>
+                    <div ng-show="myForm.contact.$touched && myForm.contact.$invalid" class="text-danger">Contact is required.</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" class="form-control" ng-model="formData.address" required></textarea>
+                    <div ng-show="myForm.address.$touched && myForm.address.$invalid" class="text-danger">Address is required.</div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid">Submit</button>
+
+            </form>
+
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', function($scope) {
+            $scope.formData = {};
+
+            $scope.submitForm = function() {
+                // Handle form submission logic here
+                console.log("Form submitted:", $scope.formData);
+            };
+        });
+    </script>
+
+</body>
+
+</html>
